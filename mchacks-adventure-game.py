@@ -29,7 +29,7 @@ def Explore():
     sys.stdin.readline()
 
 def Door():
-    print("Unfortunately Jack has chosen incorrectly!  He stumbles into the kitchen and sees a giant standing at the sink with her back towards him.")
+    print("He stumbles into the kitchen and sees a giant standing at the sink with her back towards him.")
     print("She turns around and although he tries to hide, sees him running behind the leg of one of her chairs.")
     print("Having not had any guests in a long time, she proposes, 'Foolish human! If you wish to leave this room, you must play my favorite game...'")
     print("Hangman!")
@@ -60,11 +60,16 @@ def Door():
             times += 1
         if times == 10:
             print("You lose: \nThe word was", word, ". Unfortunately, the giant seems disappointed and does not let Jack proceed.")
-            print("The game is over.")
+            print("Jack is sent home empty-handed.")
+            print("ENDING 4.1 - The Disappointed Giant")
         elif guessed == word_list:
             print("You won! The word was GOLDEN.")
             print("Jack was able to escape the giant! He may now continue on his way!")
+            sys.stdin.readline()
+            print("Gazing at Jack’s back, the giant sighs, 'I haven’t had such fun in a long time. My husband and I have been so lonely lately… if only his companion hadn’t run away.'")
+            print("Hearing the giant sob, Jack began to feel a little pity.")
             list_of_objects.append("door")
+            pet_name.append("noPet")
         else:
             print("You have guessed incorrectly", times, "times")
 
@@ -120,6 +125,7 @@ def Hallway():
     option = input("What does Jack do?: ")
     if option == "A":
         print("Surprisingly, it doesn’t chase him. He goes on his way.")
+        pet_name.append("noPet")
     if option == "B":
         print("The animal nuzzles into his hand and starts following him.")
         pet = input("What should Jack name his new pet?: ")
@@ -130,11 +136,11 @@ def follow_noise():
     print("Jackpot! Jack has stumbled across the giant's golden goose!\nThe goose and the giant seem to be having an argument.")
     PicGoose()
     if "key" in list_of_objects and "pet" not in list_of_objects:
-        print("The giant turns to you and smiles.  'You have found the key!  Solve this riddle to pass me.  If you do, you can open the cage, and keep this annoying goose'.")
+        print("The giant turns to you and smiles.  'Solve this riddle to pass me.  If you do, you can open the cage, and keep this annoying goose'.")
     elif "pet" in list_of_objects and "key" not in list_of_objects:
         print("The giant turns to you and smiles.  'You have returned my lost pet!  Solve this riddle to pass me.  If you do, you can open the cage, and keep this annoying goose'.")
     elif "pet" and "key" in list_of_objects:
-        print("The giant turns to you and smiles.  'You have found the key and returned to me my lost pet!  Solve this riddle to pass me.  If you do, you can open the cage, and keep this annoying goose'.")
+        print("The giant turns to you and smiles.  'You have returned to me my lost pet!  Solve this riddle to pass me.  If you do, you can open the cage, and keep this annoying goose'.")
 
 def Ignore_Noise():
     print("Jack continues down the hallway and stumbles across a door leading outside. He opens the door.")
@@ -156,19 +162,52 @@ def Ignore_Noise():
 def Riddle():
     print("The giant asks, 'What has six faces and twenty-one eyes, but cannot see?'")
     answer = input("Answer: ")
-    if answer == "dice" or "die" or "DICE" or "DIE":
+    if answer == "dice" or answer == "die" or answer == "DICE" or answer == "DIE":
         print("The giant scratches his chin. 'Hmmm not what I was thinking, but I guess you are correct.'")
-        sys.stdin.readline()
-        print("Congratulations! You have proven yourself to be worthy of this Golden Goose.")
-        print("The giant sends Jack home. The goose may be annoying, but Jack loves it anyways. Upon seeing the Golden Goose, Jack's mom becomes overwhelmed with Joy.\nProud of having brought his family prosperity, Jack sleeps well that night.")
     elif answer == pet_name[0]:
         print("The giant grins. 'Exactly! Poor ", pet_name[0]," here lost his sight when he was just 46 years old.'")
         print("Congratulations! You have proven yourself to be worthy of this Golden Goose.")
-        print("The giant sends Jack home. The goose may be annoying, but Jack loves it anyways. Upon seeing the Golden Goose, Jack's mom becomes overwhelmed with joy.\nProud of having brought his family prosperity, Jack sleeps well that night.")
     else:
         print("'Sorry, you are wrong. I am afraid that you are undeserving of my golden goose.'")
-        
+        list_of_objects.append("wrong")
 
+
+
+def Ending_1(): 
+    print("‘Now where did I put the key for the cage… Oh, you found it outside? Wonderful!'")
+    print("Jack unlocks the cage and the golden goose honks, hopping into his arms. He stumbles under the weight, but proudly heads home. Upon seeing the Golden Goose, Jack's mom becomes overwhelmed with joy. Jack sleeps well that night.")
+    sys.stdin.readline()
+    print("Congratulations! You have completed ENDING 1 - Acquiring the Golden Goose.")
+	
+
+def Ending_2():
+    print("Oh dear… it seems that I have lost the key! I am afraid this goose is stuck here.")
+    if "pet" in list_of_objects:
+        print("Well as thanks for bringing home", pet_name[0], ", please take this Golden Goose Egg instead.")
+    elif "door" in list_of_objects: 
+        print("The giant pauses, lost in thought. ‘I hear my wife had a good time playing hangman with you. Please feel free to come by again and take this Golden Goose Egg as a token of our appreciation.’")
+    sys.stdin.readline()
+    print("Congratulations! You have completed ENDING 2 - Befriend the Giants.")
+	
+def Ending_3():
+    if "pet" in list_of_objects:
+        print(pet_name[0], "returns to the giant’s side, playfully pawing at his legs.")
+        print("The giant smiles brightly, ‘Now where did I put the key for the cage… Oh, you found it outside? Wonderful!’")
+        sys.stdin.readline()
+        print("Jack unlocks the cage and the golden goose honks, hopping into his arms. He stumbles under the weight, but proudly heads home. Upon seeing the Golden Goose, Jack's mom becomes overwhelmed with joy. Jack sleeps well that night.")
+    elif "door" in list_of_objects:
+        print("The giant smiles brightly, ‘Now where did I put the key for the cage… Oh, you found it outside? Wonderful!’")
+        print("The giant pauses, lost in thought. ‘I hear my wife had a good time playing hangman with you. Please feel free to come by again and take this Golden Goose Egg as a token of our appreciation.’")
+    sys.stdin.readline()
+    print("Congratulations! You have completed ENDING 3 - Everyone’s Happy!")
+
+def Ending_4():
+    print("The giant seems very disappointed in Jack. The giant sends him home empty handed. \nJack comes home to see his mother's face riddled with worry. He does not sleep well that night.")
+    sys.stdin.readline()
+    print("ENDING 4.2 - The Disappointed Giant.")
+
+	
+ 
 
 def Story():
     Intro()
@@ -197,10 +236,19 @@ def Story():
         elif noise == "B":
             Ignore_Noise()
             follow_noise()
-        if "key" or "pet" in list_of_objects:
+        if ("key" or "pet" or "door") in list_of_objects:
             Riddle()
+            if "wrong" in list_of_objects:
+                Ending_4()
+            elif ("key" and "pet")  in list_of_objects or ("key" and "door") in list_of_objects:
+                Ending_3()
+            elif "key" in list_of_objects:
+                Ending_1()
+            elif "door" or "pet" in list_of_objects:
+                Ending_2()
         else:
-            print("Unfortunately Jack has not acquired enough objects throughout his journey to recieve the golden goose.  The giant sends him home empty handed./nJack comes home to see his mother's face riddled with worry. He does not sleep well that night.")
+            print("Unfortunately Jack has not acquired enough objects throughout his journey to receive the golden goose.  The giant sends him home empty handed.\nJack comes home to see his mother's face riddled with worry. He does not sleep well that night.")
+            print("ENDING 4.3 - The Disappointed Giant")
 
 
 Story()
