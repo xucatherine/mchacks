@@ -101,7 +101,7 @@ def PicKey():
 def PicAnimal():
     print("      _.---._    /\\")
     print('    ./"       "--`\//') 
-    print("  ./              o \ ")
+    print("  ./            oooo\ ")
     print(" /./\  )______   \__ \ ")
     print("./  / /\ \   | \ \  \ \ ")
     print("   / /  \ \  | |\ \  \7")
